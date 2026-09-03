@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orcullo Custom Controller</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="main-header">
+        <div class="logo">
+            <a href="index.php" class="header-logo">
+                <img src="Assets/LogoOnly.png" class="logo-image" alt="Orcullo Logo">
+                <img src="Assets/TextOnly.png" class="text-logo" alt="Orcullo Custom Controller">
+            </a>
+        </div>
+        <nav class="main-nav">
+            <a href="#" class="active">Home</a>
+            <a href="#">Shop</a>
+            <a href="#">Customize</a>
+            <a href="#">About</a>
+        </nav>
+        <div class="header-actions">
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+            </div>
+            <span class="icon">♡</span>
+            <span class="icon">🛒</span>
+            <a href="login.php" class="icon-link">👤</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Control Your <br>
+                <span class="text-gradient">Gaming Experience</span><br> 
+                Your Way
+            </h1>
+            <p>Built for precision. Designed for personalization. Orcullo Custom Controller gives gamers the freedom to create a controller that matches their style, preferences, and playstyle.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary">CUSTOMIZE NOW</a>
+                <a href="#" class="btn btn-outline">VIEW CONTROLLERS</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES BAR -->
+    <section class="features-section">
+        <div class="feature-card">
+            <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <h3>FAST SHIPPING</h3>
+            <p>Get it by tomorrow</p>
+        </div>
+        <div class="feature-card">
+            <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <h3>1YR WARRANTY</h3>
+            <p>Full coverage protection</p>
+        </div>
+        <div class="feature-card">
+            <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <h3>CUSTOMER SUPPORT</h3>
+            <p>We're here when you need us</p>
+        </div>
+        <div class="feature-card">
+            <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            <h3>SECURE CHECKOUT</h3>
+            <p>Safe and secure online payments</p>
+        </div>
+    </section>
+
+<!-- CATEGORIES SECTION -->
+    <section class="content-section categories-section">
+        <div class="section-header">
+            <div>
+                <h2>CATEGORIES</h2>
+                <p class="section-sub">Find what you need at our store!</p>
+            </div>
+            <a href="#" class="explore-link">EXPLORE ALL &gt;</a>
+        </div>
+        <div class="card-grid col-4">
+            <div class="category-card">
+                <img src="Assets/ARCADE STICKS.png" alt="Arcade Sticks" class="category-img">
+                <div class="category-label">ARCADE STICKS</div>
+            </div>
+            <div class="category-card">
+                <img src="Assets/Gamepad.png" alt="Game Pads" class="category-img">
+                <div class="category-label">GAME PADS</div>
+            </div>
+            <div class="category-card">
+                <img src="Assets/LEVERLESS.png" alt="Leverless" class="category-img">
+                <div class="category-label">LEVERLESS</div>
+            </div>
+            <div class="category-card">
+                <img src="Assets/CUSTOM.png" alt="Custom" class="category-img">
+                <div class="category-label">CUSTOM</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BUY NOW SECTION -->
+    <section class="content-section buy-now-section">
+        <div class="section-header">
+            <h2>BUY NOW!</h2>
+        </div>
+        <div class="card-grid col-4">
+            <div class="product-card">
+                <img src="Assets/Orucllo MixBox.png" alt="Orcullo MixBox" class="product-img">
+                <h4>Orcullo MixBox</h4>
+                <p class="price">$150.00</p>
+            </div>
+            <div class="product-card">
+                <img src="Assets/Custom Art Works  .png" alt="Custom Art Works" class="product-img">
+                <h4>Custom Art Works</h4>
+                <p class="price">$10.00</p>
+            </div>
+            <div class="product-card">
+                <img src="Assets/BROOK-WINGMAN-P5__72173 1.png" alt="Brook PS5 Converter" class="product-img">
+                <h4>Brook PS5 Converter</h4>
+                <p class="price">$60.00</p>
+            </div>
+            <div class="product-card">
+                <img src="Assets/Sanwa.png" alt="Sanwa Joystick" class="product-img">
+                <h4>Sanwa Joystick</h4>
+                <p class="price">$25.00</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE US SECTION -->
+    <section class="content-section why-us-section">
+        <div class="split-layout">
+            <img src="Assets/showcase.png" alt="Controller Showcase" class="showcase-img">
+            <div class="why-us-text">
+                <h2>Why You Should Choose Us?</h2>
+                <p class="section-desc">Every controller is designed with precision, comfort, and customization in mind. Choose the features and design that fit your playstyle and create a controller that feels uniquely yours.</p>
+                <div class="perks-grid">
+                    <div class="perk-box">
+                        <h5>✓ PRECISION CONTROL</h5>
+                        <p>Responsive controls designed for accurate and consistent gameplay.</p>
+                    </div>
+                    <div class="perk-box">
+                        <h5>✓ FULL CUSTOMIZATION</h5>
+                        <p>Choose colors, buttons, sticks, and artwork to match your aesthetic.</p>
+                    </div>
+                    <div class="perk-box">
+                        <h5>✓ BUILT FOR COMFORT</h5>
+                        <p>Designed with comfortable controls for longer gaming sessions.</p>
+                    </div>
+                    <div class="perk-box">
+                        <h5>✓ YOUR PLAYSTYLE</h5>
+                        <p>Create a setup that matches the way you play and the games you enjoy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section class="content-section testimonials-section">
+        <div class="testimonials-header">
+            <h2>What Our Players Say</h2>
+            <p class="section-sub">Designed for passionate people that are into fighting games. Explore verified feedback from the Orcullo community.</p>
+        </div>
+        <div class="card-grid col-3">
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"The input response on the Orcullo MixBox is flawless. Zero latency, custom Cherry MX switches, and the layout feels incredibly natural."</p>
+                <h5>Justin 'J Wong' Wong</h5>
+                <span class="role">Customer</span>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"I've been using the Leverless for three months and the build quality is immaculate. The custom artwork template printed beautifully."</p>
+                <h5>Solomon K.</h5>
+                <span class="role">Customer</span>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Custom button configuration tool made it so easy to build my ideal layout. The heavy aluminum base plate gives it the perfect weight."</p>
+                <h5>Akihiro T.</h5>
+                <span class="role">Customer</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="header-logo">
+                    <img src="Assets/LogoOnly.png" class="logo-image" alt="Logo">
+                    <img src="Assets/TextOnly.png" class="text-logo" alt="Orcullo">
+                </div>
+                <p>Custom gaming controllers designed for players who want greater control and a setup that's uniquely theirs.</p>
+            </div>
+            <div class="footer-links">
+                <h5>SHOP</h5>
+                <a href="#">Controllers</a>
+                <a href="#">Custom Builds</a>
+                <a href="#">Accessories</a>
+            </div>
+            <div class="footer-links">
+                <h5>SUPPORT</h5>
+                <a href="#">Support Center</a>
+                <a href="#">Contact Us</a>
+                <a href="#">FAQs</a>
+            </div>
+            <div class="footer-newsletter">
+                <h5>NEWSLETTER</h5>
+                <p>Get updates, new designs, and the latest from Orcullo.</p>
+                <div class="input-wrap">
+                    <input type="email" placeholder="Email address">
+                    <button type="button">JOIN</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copy">
+            <p>© 2026 ALL RIGHTS RESERVED FOR ORCULLO CUSTOM CONTROLLERS.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
