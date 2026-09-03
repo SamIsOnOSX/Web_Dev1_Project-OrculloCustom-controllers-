@@ -1,7 +1,7 @@
 <?php
 // register.php
 session_start();
-require 'db.php'; 
+require 'database/db.php'; //lowkey just forgot that T-T
 
 $errors = [];
 $email = ''; 
