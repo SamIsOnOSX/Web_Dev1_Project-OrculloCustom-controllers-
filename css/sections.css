@@ -32,11 +32,6 @@
     color: var(--text-light);
 }
 
-/* Categories */
-/* ==========================================================================
-   IMAGE STYLING FOR CARDS & SHOWCASE
-   ========================================================================== */
-
 /* Category Cards */
 .category-card {
     position: relative;

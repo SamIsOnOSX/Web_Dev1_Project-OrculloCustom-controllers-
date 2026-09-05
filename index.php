@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orcullo Custom Controller</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -30,9 +31,19 @@
             <div class="search-bar">
                 <input type="text" placeholder="Search...">
             </div>
-            <span class="icon">♡</span>
-            <span class="icon">🛒</span>
-            <a href="login.php" class="icon-link">👤</a>
+            
+            <!-- Wishlist Icon -->
+            <a href="#" class="icon-link" title="Wishlist"><i class="fa-regular fa-heart"></i></a>
+            
+            <!-- Cart Icon -->
+            <a href="#" class="icon-link" title="Cart"><i class="fa-solid fa-cart-shopping"></i></a>
+            
+            <!-- Dynamic Login/Profile Icon -->
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <a href="logout.php" class="icon-link" title="Logout"><i class="fa-solid fa-user-check"></i></a>
+            <?php else: ?>
+                <a href="login.php" class="icon-link" title="Login"><i class="fa-regular fa-user"></i></a>
+            <?php endif; ?>
         </div>
     </header>
 
@@ -192,39 +203,46 @@
 
     <!-- FOOTER -->
     <footer class="main-footer">
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <div class="header-logo">
-                    <img src="Assets/LogoOnly.png" class="logo-image" alt="Logo">
-                    <img src="Assets/TextOnly.png" class="text-logo" alt="Orcullo">
+        <div class="footer-container">
+            <!-- Brand Section -->
+            <div class="footer-column brand-column">
+                <div class="footer-logo">
+                    <img src="Assets/LogoOnly.png" class="logo-image" alt="Orcullo Logo">
+                    <img src="Assets/TextOnly.png" class="text-logo" alt="Orcullo Custom Controller">
                 </div>
                 <p>Custom gaming controllers designed for players who want greater control and a setup that's uniquely theirs.</p>
             </div>
-            <div class="footer-links">
-                <h5>SHOP</h5>
+
+            <!-- Links Sections -->
+            <div class="footer-column links-column">
+                <h4>SHOP</h4>
                 <a href="#">Controllers</a>
                 <a href="#">Custom Builds</a>
                 <a href="#">Accessories</a>
             </div>
-            <div class="footer-links">
-                <h5>SUPPORT</h5>
+            
+            <div class="footer-column links-column">
+                <h4>SUPPORT</h4>
                 <a href="#">Support Center</a>
                 <a href="#">Contact Us</a>
                 <a href="#">FAQs</a>
             </div>
-            <div class="footer-newsletter">
-                <h5>NEWSLETTER</h5>
+
+            <!-- Newsletter Section -->
+            <div class="footer-column newsletter-column">
+                <h4>NEWSLETTER</h4>
                 <p>Get updates, new designs, and the latest from Orcullo.</p>
-                <div class="input-wrap">
-                    <input type="email" placeholder="Email address">
-                    <button type="button">JOIN</button>
-                </div>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Email address" required>
+                    <button type="submit">JOIN</button>
+                </form>
             </div>
         </div>
-        <div class="footer-copy">
-            <p>© 2026 ALL RIGHTS RESERVED FOR ORCULLO CUSTOM CONTROLLERS.</p>
+
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p>&copy; 2026 ALL RIGHTS RESERVED FOR ORCULLO CUSTOM CONTROLLERS.</p>
         </div>
     </footer>
-
 </body>
 </html>
