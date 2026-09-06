@@ -22,8 +22,8 @@
             </a>
         </div>
         <nav class="main-nav">
-            <a href="#" class="active">Home</a>
-            <a href="#">Shop</a>
+            <a href="index.php" class="active">Home</a>
+            <a href="shop.php">Shop</a>
             <a href="#">Customize</a>
             <a href="#">About</a>
         </nav>
@@ -97,7 +97,7 @@
         </div>
         <div class="card-grid col-4">
             <div class="category-card">
-                <img src="Assets/ARCADE STICKS.png" alt="Arcade Sticks" class="category-img">
+                <img src="Assets/ARCADE_STICKS.png" alt="Arcade Sticks" class="category-img">
                 <div class="category-label">ARCADE STICKS</div>
             </div>
             <div class="category-card">
@@ -122,7 +122,7 @@
         </div>
         <div class="card-grid col-4">
             <div class="product-card">
-                <img src="Assets/Orucllo MixBox.png" alt="Orcullo MixBox" class="product-img">
+                <img src="Assets/Orucllo_MixBox.png" alt="MixBox" class="product-img">
                 <h4>Orcullo MixBox</h4>
                 <p class="price">$150.00</p>
             </div>
