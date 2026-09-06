@@ -1,38 +1,27 @@
 <?php
 session_start();
 require 'database/db.php'; 
+require 'validation.php';
 
 $errors = [];
 $email = ''; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
-    $email = trim($_POST['email'] ?? '');
-    $password = trim($_POST['password'] ?? '');
-
-    if (empty($email)) {
-        $errors[] = "Email is required.";
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = "Enter a valid email address.";
-    }
-
-    if (empty($password)) {
-        $errors[] = "Password is required.";
-    }
+    $result = validateLoginPayload($_POST);
+    $errors = $result['errors'];
+    $email = $result['data']['email'];
 
     if (empty($errors)) {
-        $email_safe = htmlspecialchars($email);
-        
         $sql = "SELECT id, password FROM users WHERE email = :email";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindValue(':email', $email_safe);
+        $stmt->bindValue(':email', $email);
         $stmt->execute();
         
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($user && password_verify($password, $user['password'])) {
+        if ($user && password_verify($result['data']['password'], $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
-            
             header("Location: index.php");
             exit();
         } else {

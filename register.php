@@ -1,46 +1,31 @@
 <?php
-// register.php
 session_start();
-require 'database/db.php'; //lowkey just forgot that T-T
+require 'database/db.php'; 
+require 'validation.php';
 
 $errors = [];
 $email = ''; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
-    $email = trim($_POST['email'] ?? '');
-    $password = trim($_POST['password'] ?? '');
-
-    if (empty($email)) {
-        $errors[] = "Email is required.";
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = "Enter a valid email address.";
-    }
-
-    if (empty($password)) {
-        $errors[] = "Password is required.";
-    } elseif (strlen($password) < 6) {
-        $errors[] = "Password must be at least 6 characters.";
-    }
+    $result = validateRegisterPayload($_POST);
+    $errors = $result['errors'];
+    $email = $result['data']['email'];
 
     if (empty($errors)) {
-        $email_safe = htmlspecialchars($email);
-        
-        // Check if email already exists
         $check_sql = "SELECT id FROM users WHERE email = :email";
         $check_stmt = $pdo->prepare($check_sql);
-        $check_stmt->bindValue(':email', $email_safe);
+        $check_stmt->bindValue(':email', $email);
         $check_stmt->execute();
         
         if ($check_stmt->rowCount() > 0) {
             $errors[] = "This email is already registered.";
         } else {
-            // Encrypt password and insert new user
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            $hashed_password = password_hash($result['data']['password'], PASSWORD_DEFAULT);
             
             $sql = "INSERT INTO users (email, password) VALUES (:email, :password)";
             $stmt = $pdo->prepare($sql);
-            $stmt->bindValue(':email', $email_safe);
+            $stmt->bindValue(':email', $email);
             $stmt->bindValue(':password', $hashed_password);
             
             if ($stmt->execute()) {
