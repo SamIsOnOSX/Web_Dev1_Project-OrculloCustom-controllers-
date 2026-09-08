@@ -15,6 +15,24 @@ function updateProductStock($pdo, $product_id, $new_stock) {
     return $stmt->execute();
 }
 
+function createProduct($pdo, $name, $description, $price, $stock, $image_path) {
+    $sql = "INSERT INTO products (name, description, price, stock, image_path) VALUES (:name, :description, :price, :stock, :image_path)";
+    $stmt = $pdo->prepare($sql);
+    return $stmt->execute([
+        'name' => $name,
+        'description' => $description,
+        'price' => $price,
+        'stock' => $stock,
+        'image_path' => $image_path
+    ]);
+}
+
+function deleteProduct($pdo, $product_id) {
+    $sql = "DELETE FROM products WHERE id = :id";
+    $stmt = $pdo->prepare($sql);
+    return $stmt->execute(['id' => $product_id]);
+}
+
 function createOrder($pdo, $user_id, $total_amount) {
     $stmt = $pdo->prepare("INSERT INTO orders (user_id, total_amount) VALUES (:user_id, :total_amount)");
     $stmt->execute(['user_id' => $user_id, 'total_amount' => $total_amount]);

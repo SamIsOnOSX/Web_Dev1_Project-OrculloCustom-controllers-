@@ -45,7 +45,7 @@ include '../global/header.php';
                 <input type="file" name="custom_artwork" accept="image/*">
             </div>
 
-            <button type="submit" class="btn-primary" style="cursor: pointer;">Save and Add to Cart</button>
+            <button type="submit" class="btn-primary">Save and Add to Cart</button>
         </form>
     </div>
 </main>

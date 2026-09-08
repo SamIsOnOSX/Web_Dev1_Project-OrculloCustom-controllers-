@@ -66,10 +66,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
             </div>
             
-            <div class="input-group" style="position: relative;">
+            <div class="input-group password-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" required style="width: 100%; padding-right: 40px;">
-                <button type="button" id="togglePassword" style="position: absolute; right: 10px; top: 32px; background: none; border: none; color: #aaa; cursor: pointer; font-size: 0.85rem;">Show</button>
+                <input type="password" id="password" name="password" required>
+                <button type="button" id="togglePassword" class="toggle-password-btn">Show</button>
             </div>
 
             <button type="submit" class="login-btn">REGISTER</button>

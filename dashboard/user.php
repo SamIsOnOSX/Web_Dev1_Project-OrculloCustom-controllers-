@@ -48,7 +48,7 @@ include '../global/header.php';
     <div class="dashboard-card">
         <h3>Order History</h3>
         <?php if (empty($orders)): ?>
-            <p style="color: #a3a3a3;">You haven't placed any orders yet.</p>
+            <p class="empty-text">You haven't placed any orders yet.</p>
         <?php else: ?>
             <table class="order-table">
                 <thead>

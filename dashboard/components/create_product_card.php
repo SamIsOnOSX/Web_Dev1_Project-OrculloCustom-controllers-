@@ -1,0 +1,45 @@
+<!-- Create New Product Card -->
+<div class="dashboard-card">
+    <h3><i class="fa-solid fa-plus-circle card-icon"></i>Create New Product</h3>
+    <form method="POST" action="index.php" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="form-group flex-2">
+                <label for="prod_name">Product Name *</label>
+                <input type="text" id="prod_name" name="name" placeholder="e.g. Orcullo HitBox Pro" required>
+            </div>
+            <div class="form-group flex-1">
+                <label for="prod_price">Price ($) *</label>
+                <input type="number" id="prod_price" name="price" step="0.01" min="0" placeholder="e.g. 199.99" required>
+            </div>
+            <div class="form-group flex-1">
+                <label for="prod_stock">Initial Stock *</label>
+                <input type="number" id="prod_stock" name="stock" min="0" value="10" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="prod_description">Description</label>
+            <textarea id="prod_description" name="description" placeholder="Product features, layout specifications, compatibility..."></textarea>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group flex-1">
+                <label for="product_image"><i class="fa-solid fa-upload label-icon"></i> Upload Product Image (PNG, JPG, WEBP)</label>
+                <input type="file" id="product_image" name="product_image" accept="image/*">
+            </div>
+            <div class="form-group flex-1">
+                <label for="existing_asset"><i class="fa-solid fa-images label-icon"></i> Or Choose Existing Asset</label>
+                <select id="existing_asset" name="existing_asset">
+                    <option value="">-- Choose from Assets library (optional) --</option>
+                    <?php foreach ($available_assets as $asset): ?>
+                        <option value="<?php echo htmlspecialchars($asset); ?>"><?php echo htmlspecialchars(basename($asset)); ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+
+        <button type="submit" name="create_product" class="btn-primary btn-create-product">
+            <i class="fa-solid fa-plus"></i> Create Product
+        </button>
+    </form>
+</div>

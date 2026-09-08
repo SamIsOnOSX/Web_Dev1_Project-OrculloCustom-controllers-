@@ -1,0 +1,130 @@
+/* css/cart.css */
+.cart-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+}
+
+.cart-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.cart-empty-text {
+    color: #a3a3a3;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.cart-link {
+    color: #3b82f6;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+.cart-link:hover {
+    color: #60a5fa;
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.cart-table-header {
+    border-bottom: 2px solid #333;
+    text-align: left;
+}
+
+.cart-table-header th {
+    padding: 12px 0;
+    color: #a3a3a3;
+    font-weight: 600;
+}
+
+.cart-table-header .th-center {
+    text-align: center;
+}
+
+.cart-table-row {
+    border-bottom: 1px solid #222;
+}
+
+.cart-table-row td {
+    padding: 15px 0;
+    vertical-align: middle;
+}
+
+.cart-item-name {
+    text-transform: capitalize;
+    display: block;
+    margin-bottom: 4px;
+    font-size: 1.05rem;
+    color: #ffffff;
+}
+
+.cart-item-meta {
+    color: #a3a3a3;
+    font-size: 0.9rem;
+}
+
+.cart-artwork-badge {
+    color: #4ade80;
+    font-size: 0.85rem;
+    display: inline-block;
+    margin-top: 4px;
+}
+
+.cart-price {
+    font-weight: 600;
+}
+
+.cart-action-col {
+    text-align: center;
+}
+
+.cart-remove-link {
+    color: #ef4444;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.cart-remove-link:hover {
+    color: #f87171;
+    text-decoration: underline;
+}
+
+.cart-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #2e2e2e;
+}
+
+.cart-total-amount {
+    margin: 0;
+    font-size: 1.5rem;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.cart-checkout-btn {
+    padding: 12px 24px;
+    background: #ffffff;
+    color: #000000;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.cart-checkout-btn:hover {
+    background: #e5e5e5;
+}

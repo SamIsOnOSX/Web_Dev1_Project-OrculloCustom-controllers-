@@ -3,9 +3,9 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-require '../database/db.php';
-require '../database/e_commerce.php';
-require '../database/users.php';
+require_once '../database/db.php';
+require_once '../database/e_commerce.php';
+require_once '../database/users.php';
 $base_path = '../';
 
 if (!isset($_SESSION['user_id'])) {

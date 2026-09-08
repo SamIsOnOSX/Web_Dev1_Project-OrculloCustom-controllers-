@@ -1,0 +1,34 @@
+/* css/shop.css */
+.shop-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.shop-empty-text {
+    color: #a3a3a3;
+    font-size: 1.1rem;
+    text-align: center;
+    padding: 60px 0;
+}
+
+.product-form {
+    margin: 0;
+}
+
+.add-to-cart-btn {
+    width: 100%;
+    padding: 12px;
+    background: #3b82f6;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.add-to-cart-btn:hover {
+    background: #2563eb;
+}
