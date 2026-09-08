@@ -52,7 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_checkout'])) 
 
     } catch (Exception $e) {
         $pdo->rollBack();
-        $error = "Checkout failed. Please try again.";
+        // Append the actual SQL error message to the output
+        $error = "Checkout failed. Error: " . $e->getMessage();
     }
 }
 

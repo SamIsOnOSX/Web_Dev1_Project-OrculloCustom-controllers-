@@ -47,7 +47,7 @@ include '../global/header.php';
 
         <div style="display: flex; justify-content: space-between; align-items: center; background: #1a1a1a; padding: 20px; border-radius: 8px;">
             <h3 style="margin: 0; font-size: 1.5rem;">Total: $<?php echo number_format($total_price, 2); ?></h3>
-            <a href="../checkout.php" style="padding: 12px 24px; background: white; color: black; text-decoration: none; border-radius: 6px; font-weight: bold;">Proceed to Checkout</a>
+            <a href="../checkout/checkout.php" style="padding: 12px 24px; background: white; color: black; text-decoration: none; border-radius: 6px; font-weight: bold;">Proceed to Checkout</a>
         </div>
     <?php endif; ?>
 </main>

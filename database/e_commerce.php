@@ -22,7 +22,8 @@ function createOrder($pdo, $user_id, $total_amount) {
 }
 
 function createOrderItem($pdo, $order_id, $type, $button_color, $price, $artwork_path) {
-    $stmt = $pdo->prepare("INSERT INTO order_items (order_id, product_type, button_color, price, artwork_path) VALUES (:order_id, :type, :button_color, :price, :artwork_path)");
+    // Updated 'product_type' to 'item_type' to match your database schema
+    $stmt = $pdo->prepare("INSERT INTO order_items (order_id, item_type, button_color, price, artwork_path) VALUES (:order_id, :type, :button_color, :price, :artwork_path)");
     return $stmt->execute([
         'order_id' => $order_id,
         'type' => $type,
