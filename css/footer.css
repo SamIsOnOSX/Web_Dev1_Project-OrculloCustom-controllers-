@@ -40,6 +40,16 @@
     color: #FF3D9A;
 }
 
+.links-column .unclickable-item {
+    display: block;
+    color: #777777;
+    margin-bottom: 12px;
+    font-size: 14px;
+    cursor: default;
+    user-select: none;
+    pointer-events: none;
+}
+
 /* Newsletter Form Styling */
 .newsletter-form {
     display: flex;

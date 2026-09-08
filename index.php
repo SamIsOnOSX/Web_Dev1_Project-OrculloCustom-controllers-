@@ -10,7 +10,7 @@
             </h1>
             <p>Built for precision. Designed for personalization. Orcullo Custom Controller gives gamers the freedom to create a controller that matches their style, preferences, and playstyle.</p>
             <div class="hero-buttons">
-                <a href="<?php echo $base_path; ?>customize/customize.php" class="btn btn-primary">CUSTOMIZE NOW</a>
+                <a href="<?php echo $base_path; ?>customize/index.php" class="btn btn-primary">CUSTOMIZE NOW</a>
                 <a href="<?php echo $base_path; ?>shop/shop.php" class="btn btn-outline">VIEW CONTROLLERS</a>
             </div>
         </div>
@@ -47,25 +47,25 @@
                 <h2>CATEGORIES</h2>
                 <p class="section-sub">Find what you need at our store!</p>
             </div>
-            <a href="#" class="explore-link">EXPLORE ALL &gt;</a>
+            <a href="<?php echo $base_path; ?>shop/shop.php" class="explore-link">EXPLORE ALL &gt;</a>
         </div>
         <div class="card-grid col-4">
-            <div class="category-card">
-                <img src="Assets/ARCADE_STICKS.png" alt="Arcade Sticks" class="category-img">
+            <a href="<?php echo $base_path; ?>shop/shop.php" class="category-card">
+                <img src="<?php echo $base_path; ?>Assets/ARCADE_STICKS.png" alt="Arcade Sticks" class="category-img">
                 <div class="category-label">ARCADE STICKS</div>
-            </div>
-            <div class="category-card">
-                <img src="Assets/Gamepad.png" alt="Game Pads" class="category-img">
+            </a>
+            <a href="<?php echo $base_path; ?>shop/shop.php" class="category-card">
+                <img src="<?php echo $base_path; ?>Assets/Gamepad.png" alt="Game Pads" class="category-img">
                 <div class="category-label">GAME PADS</div>
-            </div>
-            <div class="category-card">
-                <img src="Assets/LEVERLESS.png" alt="Leverless" class="category-img">
+            </a>
+            <a href="<?php echo $base_path; ?>shop/shop.php" class="category-card">
+                <img src="<?php echo $base_path; ?>Assets/LEVERLESS.png" alt="Leverless" class="category-img">
                 <div class="category-label">LEVERLESS</div>
-            </div>
-            <div class="category-card">
-                <img src="Assets/CUSTOM.png" alt="Custom" class="category-img">
+            </a>
+            <a href="<?php echo $base_path; ?>customize/index.php" class="category-card">
+                <img src="<?php echo $base_path; ?>Assets/CUSTOM.png" alt="Custom" class="category-img">
                 <div class="category-label">CUSTOM</div>
-            </div>
+            </a>
         </div>
     </section>
 
@@ -76,24 +76,28 @@
         </div>
         <div class="card-grid col-4">
             <div class="product-card">
-                <img src="Assets/Orucllo_MixBox.png" alt="MixBox" class="product-img">
+                <img src="<?php echo $base_path; ?>Assets/Orucllo_MixBox.png" alt="MixBox" class="product-img">
                 <h4>Orcullo MixBox</h4>
                 <p class="price">$150.00</p>
+                <a href="<?php echo $base_path; ?>shop/shop.php" class="btn btn-outline" style="display: block; text-align: center; margin-top: 10px; padding: 8px 12px; font-size: 13px;">View in Shop</a>
             </div>
             <div class="product-card">
-                <img src="Assets/Custom Art Works  .png" alt="Custom Art Works" class="product-img">
+                <img src="<?php echo $base_path; ?>Assets/Custom Art Works  .png" alt="Custom Art Works" class="product-img">
                 <h4>Custom Art Works</h4>
                 <p class="price">$10.00</p>
+                <a href="<?php echo $base_path; ?>shop/shop.php" class="btn btn-outline" style="display: block; text-align: center; margin-top: 10px; padding: 8px 12px; font-size: 13px;">View in Shop</a>
             </div>
             <div class="product-card">
-                <img src="Assets/BROOK-WINGMAN-P5__72173 1.png" alt="Brook PS5 Converter" class="product-img">
+                <img src="<?php echo $base_path; ?>Assets/BROOK-WINGMAN-P5__72173 1.png" alt="Brook PS5 Converter" class="product-img">
                 <h4>Brook PS5 Converter</h4>
                 <p class="price">$60.00</p>
+                <a href="<?php echo $base_path; ?>shop/shop.php" class="btn btn-outline" style="display: block; text-align: center; margin-top: 10px; padding: 8px 12px; font-size: 13px;">View in Shop</a>
             </div>
             <div class="product-card">
-                <img src="Assets/Sanwa.png" alt="Sanwa Joystick" class="product-img">
+                <img src="<?php echo $base_path; ?>Assets/Sanwa.png" alt="Sanwa Joystick" class="product-img">
                 <h4>Sanwa Joystick</h4>
                 <p class="price">$25.00</p>
+                <a href="<?php echo $base_path; ?>shop/shop.php" class="btn btn-outline" style="display: block; text-align: center; margin-top: 10px; padding: 8px 12px; font-size: 13px;">View in Shop</a>
             </div>
         </div>
     </section>
