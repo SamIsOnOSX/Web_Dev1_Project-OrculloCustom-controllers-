@@ -1,52 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orcullo Custom Controller</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    
-</head>
-<body>
+<?php include 'global/header.php'; ?>
 
-    <!-- HEADER -->
-    <header class="main-header">
-        <div class="logo">
-            <a href="index.php" class="header-logo">
-                <img src="Assets/LogoOnly.png" class="logo-image" alt="Orcullo Logo">
-                <img src="Assets/TextOnly.png" class="text-logo" alt="Orcullo Custom Controller">
-            </a>
-        </div>
-        <nav class="main-nav">
-            <a href="index.php" class="active">Home</a>
-            <a href="shop.php">Shop</a>
-            <a href="#">Customize</a>
-            <a href="#">About</a>
-        </nav>
-        <div class="header-actions">
-            <div class="search-bar">
-                <input type="text" placeholder="Search...">
-            </div>
-            
-            <!-- Wishlist Icon -->
-            <a href="#" class="icon-link" title="Wishlist"><i class="fa-regular fa-heart"></i></a>
-            
-            <!-- Cart Icon -->
-            <a href="#" class="icon-link" title="Cart"><i class="fa-solid fa-cart-shopping"></i></a>
-            
-            <!-- Dynamic Login/Profile Icon -->
-            <?php if (isset($_SESSION['user_id'])): ?>
-                <a href="logout.php" class="icon-link" title="Logout"><i class="fa-solid fa-user-check"></i></a>
-            <?php else: ?>
-                <a href="login.php" class="icon-link" title="Login"><i class="fa-regular fa-user"></i></a>
-            <?php endif; ?>
-        </div>
-    </header>
-
+<main>
     <!-- HERO SECTION -->
     <section class="hero-section">
         <div class="hero-content">
@@ -57,7 +11,7 @@
             <p>Built for precision. Designed for personalization. Orcullo Custom Controller gives gamers the freedom to create a controller that matches their style, preferences, and playstyle.</p>
             <div class="hero-buttons">
                 <a href="#" class="btn btn-primary">CUSTOMIZE NOW</a>
-                <a href="#" class="btn btn-outline">VIEW CONTROLLERS</a>
+                <a href="shop.php" class="btn btn-outline">VIEW CONTROLLERS</a>
             </div>
         </div>
     </section>
@@ -86,7 +40,7 @@
         </div>
     </section>
 
-<!-- CATEGORIES SECTION -->
+    <!-- CATEGORIES SECTION -->
     <section class="content-section categories-section">
         <div class="section-header">
             <div>
@@ -200,49 +154,6 @@
             </div>
         </div>
     </section>
+</main>
 
-    <!-- FOOTER -->
-    <footer class="main-footer">
-        <div class="footer-container">
-            <!-- Brand Section -->
-            <div class="footer-column brand-column">
-                <div class="footer-logo">
-                    <img src="Assets/LogoOnly.png" class="logo-image" alt="Orcullo Logo">
-                    <img src="Assets/TextOnly.png" class="text-logo" alt="Orcullo Custom Controller">
-                </div>
-                <p>Custom gaming controllers designed for players who want greater control and a setup that's uniquely theirs.</p>
-            </div>
-
-            <!-- Links Sections -->
-            <div class="footer-column links-column">
-                <h4>SHOP</h4>
-                <a href="#">Controllers</a>
-                <a href="#">Custom Builds</a>
-                <a href="#">Accessories</a>
-            </div>
-            
-            <div class="footer-column links-column">
-                <h4>SUPPORT</h4>
-                <a href="#">Support Center</a>
-                <a href="#">Contact Us</a>
-                <a href="#">FAQs</a>
-            </div>
-
-            <!-- Newsletter Section -->
-            <div class="footer-column newsletter-column">
-                <h4>NEWSLETTER</h4>
-                <p>Get updates, new designs, and the latest from Orcullo.</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Email address" required>
-                    <button type="submit">JOIN</button>
-                </form>
-            </div>
-        </div>
-
-        <!-- Copyright -->
-        <div class="footer-bottom">
-            <p>&copy; 2026 ALL RIGHTS RESERVED FOR ORCULLO CUSTOM CONTROLLERS.</p>
-        </div>
-    </footer>
-</body>
-</html>
+<?php include 'global/footer.php'; ?>

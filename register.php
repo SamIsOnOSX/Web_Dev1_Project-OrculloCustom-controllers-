@@ -7,7 +7,6 @@ $errors = [];
 $email = ''; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
     $result = validateRegisterPayload($_POST);
     $errors = $result['errors'];
     $email = $result['data']['email'];
@@ -22,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errors[] = "This email is already registered.";
         } else {
             $hashed_password = password_hash($result['data']['password'], PASSWORD_DEFAULT);
-            
             $sql = "INSERT INTO users (email, password) VALUES (:email, :password)";
             $stmt = $pdo->prepare($sql);
             $stmt->bindValue(':email', $email);
@@ -38,21 +36,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Orcullo Custom Controller</title>
+    <title>Register - Orcullo Custom Controllers</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/login.css">
 </head>
 <body class="login-body">
-
     <div class="login-card">
         <h2>Create Account</h2>
-
         <?php if (!empty($errors)): ?>
             <div class="error-box">
                 <?php foreach ($errors as $e): ?>
@@ -66,17 +61,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="email">Email Address</label>
                 <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
             </div>
-            
             <div class="input-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            
             <button type="submit" class="login-btn">REGISTER</button>
         </form>
-        
         <a href="login.php" class="register-link">Already have an account? Login here.</a>
     </div>
-
 </body>
 </html>
