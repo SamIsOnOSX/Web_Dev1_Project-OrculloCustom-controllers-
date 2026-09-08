@@ -43,6 +43,7 @@ function validateRegisterPayload(array $post): array
     $password = trim($post['password'] ?? '');
 
     $errors = array_filter([
+        checkRequiredField($username, 'Username'),
         checkRequiredField($email, 'Email'),
         verifyEmailAddress($email),
         checkRequiredField($password, 'Password'),
@@ -52,12 +53,13 @@ function validateRegisterPayload(array $post): array
     $errors = array_values($errors);
 
     if (empty($errors)) {
+        $username = htmlspecialchars($username);
         $email = htmlspecialchars($email);
     }
 
     return [
         'errors' => $errors,
-        'data'   => ['email' => $email, 'password' => $password],
+        'data'   => ['username' => $username, 'email' => $email, 'password' => $password],
     ];
 }
 ?>

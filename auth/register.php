@@ -13,15 +13,15 @@ $email = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = validateRegisterPayload($_POST);
     $errors = $result['errors'];
-    $username = $result['data']['username'];
-    $email = $result['data']['email'];
+    $username = $result['data']['username'] ?? '';
+    $email = $result['data']['email'] ?? '';
 
     if (empty($errors)) {
         // Check if email or username already exists
         $existing_user = getUserByEmailOrUsername($pdo, $email);
         
         if ($existing_user) {
-            $errors[] = "This email is already registered.";
+            $errors[] = "This email or username is already registered.";
         } else {
             $hashed_password = password_hash($result['data']['password'], PASSWORD_DEFAULT);
             
