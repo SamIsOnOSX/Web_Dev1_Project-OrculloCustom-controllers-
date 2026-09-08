@@ -23,30 +23,36 @@ $base_path = $base_path ?? '';
     <link rel="stylesheet" href="<?php echo $base_path; ?>css/hero.css">
     <link rel="stylesheet" href="<?php echo $base_path; ?>css/sections.css">
     <link rel="stylesheet" href="<?php echo $base_path; ?>css/footer.css">
-
 </head>
 <body>
     <header class="main-header">
         <div class="logo">
-            <!-- Removed the slash before index.php -->
             <a href="<?php echo $base_path; ?>index.php" class="header-logo">
                 <img src="<?php echo $base_path; ?>Assets/LogoOnly.png" class="logo-image" alt="Orcullo Logo">
                 <img src="<?php echo $base_path; ?>Assets/TextOnly.png" class="text-logo" alt="Orcullo Custom Controller">
             </a>
         </div>
+        
         <nav class="main-nav">
-            <!-- Removed the slash before index.php -->
             <a href="<?php echo $base_path; ?>index.php">Home</a>
             <a href="<?php echo $base_path; ?>shop/shop.php">Shop</a>
-            <a href="<?php echo $base_path; ?>customize/customize.php">Customize</a>
+            <a href="<?php echo $base_path; ?>customize/index.php">Customize</a>
             <a href="<?php echo $base_path; ?>about/about.php">About</a>
+            
+            <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
+                <a href="<?php echo $base_path; ?>admin/dashboard.php" class="admin-link" style="color: #f59e0b; font-weight: bold;">
+                    Admin
+                </a>
+            <?php endif; ?>
         </nav>
+
         <div class="header-actions">
             <div class="search-bar">
                 <input type="text" placeholder="Search...">
             </div>
             <a href="<?php echo $base_path; ?>cart/cart.php" class="icon-link" title="Cart"><i class="fa-solid fa-cart-shopping"></i></a>
             <a href="<?php echo $base_path; ?>wishlist/wishlist.php" class="icon-link" title="Wishlist"><i class="fa-regular fa-heart"></i></a>
+            
             <?php if (isset($_SESSION['user_id'])): ?>
                 <a href="<?php echo $base_path; ?>auth/logout.php" class="icon-link" title="Logout"><i class="fa-solid fa-user-check"></i></a>
             <?php else: ?>

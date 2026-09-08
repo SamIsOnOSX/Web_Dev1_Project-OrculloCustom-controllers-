@@ -15,4 +15,21 @@ function updateProductStock($pdo, $product_id, $new_stock) {
     return $stmt->execute();
 }
 
+function createOrder($pdo, $user_id, $total_amount) {
+    $stmt = $pdo->prepare("INSERT INTO orders (user_id, total_amount) VALUES (:user_id, :total_amount)");
+    $stmt->execute(['user_id' => $user_id, 'total_amount' => $total_amount]);
+    return $pdo->lastInsertId();
+}
+
+function createOrderItem($pdo, $order_id, $type, $button_color, $price, $artwork_path) {
+    $stmt = $pdo->prepare("INSERT INTO order_items (order_id, product_type, button_color, price, artwork_path) VALUES (:order_id, :type, :button_color, :price, :artwork_path)");
+    return $stmt->execute([
+        'order_id' => $order_id,
+        'type' => $type,
+        'button_color' => $button_color,
+        'price' => $price,
+        'artwork_path' => $artwork_path
+    ]);
+}
+
 ?>

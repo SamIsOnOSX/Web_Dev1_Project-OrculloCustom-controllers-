@@ -1,6 +1,8 @@
 <?php
-$base_path = '../'; // Tells the header to look one folder up
-require_once 'function.php';
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$base_path = '../'; 
 include '../global/header.php';
 ?>
 
@@ -12,14 +14,16 @@ include '../global/header.php';
 
         <?php if (!empty($message)): ?>
             <div class="success-box">
-                <?php echo $message; ?> <a href="../shop.php">View Shop / Cart</a>
+                <?php echo $message; ?> <a href="../cart/cart.php">View Cart</a>
             </div>
         <?php endif; ?>
 
-        <form action="customize.php" method="POST" enctype="multipart/form-data" class="customizer-form">
+        <form action="../cart/cart.php" method="POST" enctype="multipart/form-data" class="customizer-form">
+            <input type="hidden" name="add_to_cart_custom" value="1">
+
             <div class="input-group">
                 <label>Controller Type</label>
-                <select name="controller_type" required>
+                <select name="type" required>
                     <option value="arcade_stick">Arcade Stick - $150.00</option>
                     <option value="leverless">Leverless - $160.00</option>
                     <option value="gamepad">Gamepad - $120.00</option>
@@ -41,7 +45,7 @@ include '../global/header.php';
                 <input type="file" name="custom_artwork" accept="image/*">
             </div>
 
-            <button type="submit" class="btn-primary">Save and Add to Cart</button>
+            <button type="submit" class="btn-primary" style="cursor: pointer;">Save and Add to Cart</button>
         </form>
     </div>
 </main>
