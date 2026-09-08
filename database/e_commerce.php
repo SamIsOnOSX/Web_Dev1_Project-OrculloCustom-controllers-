@@ -33,4 +33,27 @@ function createOrderItem($pdo, $order_id, $type, $button_color, $price, $artwork
     ]);
 }
 
+// Fetch orders: passing a user_id filters it; passing null gets everything
+function getOrderHistory($pdo, $user_id = null) {
+    if ($user_id) {
+        $stmt = $pdo->prepare("SELECT * FROM orders WHERE user_id = :user_id ORDER BY created_at DESC");
+        $stmt->execute(['user_id' => $user_id]);
+    } else {
+        $stmt = $pdo->query("SELECT * FROM orders ORDER BY created_at DESC");
+    }
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+// Fetch user profiles: passing a user_id gets one; passing null gets all
+function getUsers($pdo, $user_id = null) {
+    if ($user_id) {
+        $stmt = $pdo->prepare("SELECT id, username, email, role FROM users WHERE id = :user_id");
+        $stmt->execute(['user_id' => $user_id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    } else {
+        $stmt = $pdo->query("SELECT id, username, email, role FROM users ORDER BY created_at DESC");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+}
+
 ?>

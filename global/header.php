@@ -39,10 +39,8 @@ $base_path = $base_path ?? '';
             <a href="<?php echo $base_path; ?>customize/index.php">Customize</a>
             <a href="<?php echo $base_path; ?>about/about.php">About</a>
             
-            <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
-                <a href="<?php echo $base_path; ?>admin/dashboard.php" class="admin-link" style="color: #f59e0b; font-weight: bold;">
-                    Admin
-                </a>
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <a href="<?php echo $base_path; ?>dashboard/index.php">Dashboard</a>
             <?php endif; ?>
         </nav>
 
@@ -51,7 +49,6 @@ $base_path = $base_path ?? '';
                 <input type="text" placeholder="Search...">
             </div>
             <a href="<?php echo $base_path; ?>cart/cart.php" class="icon-link" title="Cart"><i class="fa-solid fa-cart-shopping"></i></a>
-            <a href="<?php echo $base_path; ?>wishlist/wishlist.php" class="icon-link" title="Wishlist"><i class="fa-regular fa-heart"></i></a>
             
             <?php if (isset($_SESSION['user_id'])): ?>
                 <a href="<?php echo $base_path; ?>auth/logout.php" class="icon-link" title="Logout"><i class="fa-solid fa-user-check"></i></a>
