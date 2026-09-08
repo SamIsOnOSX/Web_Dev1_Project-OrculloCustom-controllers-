@@ -16,29 +16,29 @@ function verifyMinimumLength(string $value, string $label, int $min): ?string
 
 function validateLoginPayload(array $post): array
 {
-    $email    = trim($post['email'] ?? '');
-    $password = trim($post['password'] ?? '');
+    $identifier = trim($post['identifier'] ?? '');
+    $password   = trim($post['password'] ?? '');
 
     $errors = array_filter([
-        checkRequiredField($email, 'Email'),
-        verifyEmailAddress($email),
+        checkRequiredField($identifier, 'Username or Email'),
         checkRequiredField($password, 'Password')
     ]);
     
     $errors = array_values($errors);
 
     if (empty($errors)) {
-        $email = htmlspecialchars($email);
+        $identifier = htmlspecialchars($identifier);
     }
 
     return [
         'errors' => $errors,
-        'data'   => ['email' => $email, 'password' => $password],
+        'data'   => ['identifier' => $identifier, 'password' => $password],
     ];
 }
 
 function validateRegisterPayload(array $post): array
 {
+    $username = trim($post['username'] ?? '');
     $email    = trim($post['email'] ?? '');
     $password = trim($post['password'] ?? '');
 

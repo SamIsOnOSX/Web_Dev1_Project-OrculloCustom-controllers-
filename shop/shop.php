@@ -1,26 +1,23 @@
 <?php
-// Step up one level to reach the database folder
 require '../database/db.php';
+require '../database/e_commerce.php';
 
-// Define the base path so the header knows to look in the root directory
 $base_path = '../'; 
 
-$sql = "SELECT id, name, description, price, image_path FROM products ORDER BY id DESC";
-$stmt = $pdo->query($sql);
-$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// Fetch all products using the new reusable function
+$products = getAllProducts($pdo);
 
-// Step up one level to include the global header
 include '../global/header.php'; 
 ?>
 
 <main class="shop-container">
+    <!-- Existing HTML remains untouched -->
     <div class="product-grid">
         <?php if (empty($products)): ?>
             <p>No controllers currently in stock.</p>
         <?php else: ?>
             <?php foreach ($products as $product): ?>
                 <div class="product-card">
-                    <!-- Prepend $base_path so the browser looks in the root Assets/ folder -->
                     <img src="<?php echo $base_path . htmlspecialchars($product['image_path']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
                     
                     <h3><?php echo htmlspecialchars($product['name']); ?></h3>
@@ -33,5 +30,4 @@ include '../global/header.php';
     </div>
 </main>
 
-<!-- Step up one level to reach the global footer -->
 <?php include '../global/footer.php'; ?>

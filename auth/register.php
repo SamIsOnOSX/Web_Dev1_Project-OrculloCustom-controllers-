@@ -1,32 +1,31 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require '../database/db.php'; 
+require '../database/users.php';
 require 'validation.php';
 
 $errors = [];
+$username = '';
 $email = ''; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = validateRegisterPayload($_POST);
     $errors = $result['errors'];
+    $username = $result['data']['username'];
     $email = $result['data']['email'];
 
     if (empty($errors)) {
-        $check_sql = "SELECT id FROM users WHERE email = :email";
-        $check_stmt = $pdo->prepare($check_sql);
-        $check_stmt->bindValue(':email', $email);
-        $check_stmt->execute();
+        // Check if email or username already exists
+        $existing_user = getUserByEmailOrUsername($pdo, $email);
         
-        if ($check_stmt->rowCount() > 0) {
+        if ($existing_user) {
             $errors[] = "This email is already registered.";
         } else {
             $hashed_password = password_hash($result['data']['password'], PASSWORD_DEFAULT);
-            $sql = "INSERT INTO users (email, password) VALUES (:email, :password)";
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindValue(':email', $email);
-            $stmt->bindValue(':password', $hashed_password);
             
-            if ($stmt->execute()) {
+            if (createUser($pdo, $username, $email, $hashed_password)) {
                 header("Location: login.php");
                 exit();
             } else {
@@ -58,16 +57,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <form method="POST" action="register.php">
             <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($username); ?>" required>
+            </div>
+            
+            <div class="input-group">
                 <label for="email">Email Address</label>
                 <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
             </div>
-            <div class="input-group">
+            
+            <div class="input-group" style="position: relative;">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" required style="width: 100%; padding-right: 40px;">
+                <button type="button" id="togglePassword" style="position: absolute; right: 10px; top: 32px; background: none; border: none; color: #aaa; cursor: pointer; font-size: 0.85rem;">Show</button>
             </div>
+
             <button type="submit" class="login-btn">REGISTER</button>
         </form>
         <a href="login.php" class="register-link">Already have an account? Login here.</a>
     </div>
+
+    <!-- Password visibility toggle script -->
+    <script>
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+
+        togglePassword.addEventListener('click', function () {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.textContent = type === 'password' ? 'Show' : 'Hide';
+        });
+    </script>
 </body>
 </html>

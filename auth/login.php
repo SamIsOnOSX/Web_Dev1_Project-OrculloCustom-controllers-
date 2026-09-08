@@ -1,29 +1,31 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require '../database/db.php'; 
+require '../database/users.php';
 require 'validation.php';
 
 $errors = [];
-$email = ''; 
+$identifier = ''; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = validateLoginPayload($_POST);
     $errors = $result['errors'];
-    $email = $result['data']['email'];
+    $identifier = $result['data']['identifier'];
 
     if (empty($errors)) {
-        $sql = "SELECT id, password FROM users WHERE email = :email";
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindValue(':email', $email);
-        $stmt->execute();
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $user = getUserByEmailOrUsername($pdo, $identifier);
 
         if ($user && password_verify($result['data']['password'], $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['user_role'] = $user['role'] ?? 'customer';
+            
             header("Location: ../index.php");
             exit();
         } else {
-            $errors[] = "Invalid email or password.";
+            $errors[] = "Invalid username/email or password.";
         }
     }
 }
@@ -50,16 +52,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <form method="POST" action="login.php">
             <div class="input-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
+                <label for="identifier">Username or Email Address</label>
+                <input type="text" id="identifier" name="identifier" value="<?php echo htmlspecialchars($identifier); ?>" required>
             </div>
-            <div class="input-group">
+            
+            <div class="input-group" style="position: relative;">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" required style="width: 100%; padding-right: 40px;">
+                <!-- Simple toggle button for show/hide password -->
+                <button type="button" id="togglePassword" style="position: absolute; right: 10px; top: 32px; background: none; border: none; color: #aaa; cursor: pointer; font-size: 0.85rem;">Show</button>
             </div>
+
             <button type="submit" class="login-btn">LOGIN</button>
         </form>
         <a href="register.php" class="register-link">Don't have an account? Register here.</a>
     </div>
+
+    <!-- Quick script to control password visibility -->
+    <script>
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+
+        togglePassword.addEventListener('click', function () {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.textContent = type === 'password' ? 'Show' : 'Hide';
+        });
+    </script>
 </body>
 </html>
