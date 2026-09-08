@@ -10,8 +10,8 @@
             </h1>
             <p>Built for precision. Designed for personalization. Orcullo Custom Controller gives gamers the freedom to create a controller that matches their style, preferences, and playstyle.</p>
             <div class="hero-buttons">
-                <a href="#" class="btn btn-primary">CUSTOMIZE NOW</a>
-                <a href="shop.php" class="btn btn-outline">VIEW CONTROLLERS</a>
+                <a href="<?php echo $base_path; ?>customize/customize.php" class="btn btn-primary">CUSTOMIZE NOW</a>
+                <a href="<?php echo $base_path; ?>shop/shop.php" class="btn btn-outline">VIEW CONTROLLERS</a>
             </div>
         </div>
     </section>

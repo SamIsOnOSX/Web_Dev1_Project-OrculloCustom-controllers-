@@ -1,11 +1,16 @@
 <?php
-require 'database/db.php';
+// Step up one level to reach the database folder
+require '../database/db.php';
+
+// Define the base path so the header knows to look in the root directory
+$base_path = '../'; 
 
 $sql = "SELECT id, name, description, price, image_path FROM products ORDER BY id DESC";
 $stmt = $pdo->query($sql);
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-include 'global/header.php'; 
+// Step up one level to include the global header
+include '../global/header.php'; 
 ?>
 
 <main class="shop-container">
@@ -15,9 +20,12 @@ include 'global/header.php';
         <?php else: ?>
             <?php foreach ($products as $product): ?>
                 <div class="product-card">
-                    <img src="<?php echo htmlspecialchars($product['image_path']); ?>" alt="Controller">
+                    <!-- Prepend $base_path so the browser looks in the root Assets/ folder -->
+                    <img src="<?php echo $base_path . htmlspecialchars($product['image_path']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
+                    
                     <h3><?php echo htmlspecialchars($product['name']); ?></h3>
                     <p>$<?php echo number_format($product['price'], 2); ?></p>
+                    
                     <button class="add-to-cart-btn">Add to Cart</button>
                 </div>
             <?php endforeach; ?>
@@ -25,4 +33,5 @@ include 'global/header.php';
     </div>
 </main>
 
-<?php include 'global/footer.php'; ?>
+<!-- Step up one level to reach the global footer -->
+<?php include '../global/footer.php'; ?>
