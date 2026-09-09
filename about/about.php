@@ -10,35 +10,56 @@ include '../global/header.php';
 <!-- Link the dedicated about stylesheet -->
 <link rel="stylesheet" href="<?php echo $base_path; ?>css/about.css">
 
-<main class="about-container">
-    <h2 class="about-title">About Orcullo Custom Controllers</h2>
-    
-    <div class="about-card">
-        <h3>Our Mission</h3>
-        <p>
-            At Orcullo Custom Controllers, we are dedicated to giving gamers and enthusiasts absolute control over their hardware. We believe that a controller should be an extension of your unique playstyle and personality—not just a standard accessory.
-        </p>
+<div class="about-page-wrapper">
+    <main class="about-container">
+        <div class="about-header">
+            <h1>About Us</h1>
+        </div>
         
-        <h3>Crafted for Precision</h3>
-        <p>
-            Whether you are ordering from our curated shop or designing a custom build from scratch using our interactive configurator, every piece is built with performance, ergonomics, and striking aesthetics in mind.
-        </p>
-    </div>
+        <div class="about-main-card">
+            <div class="about-section-block">
+                <h3><i class="fa-solid fa-bullseye card-icon"></i> Our Mission</h3>
+                <p>
+                    At Orcullo Custom Controllers, we are dedicated to giving gamers and enthusiasts absolute control over their hardware. We believe that a controller should be an extension of your unique playstyle and personality&mdash;not just an off-the-shelf accessory.
+                </p>
+            </div>
+            
+            <div class="about-divider"></div>
 
-    <div class="about-grid">
-        <div class="about-grid-item">
-            <h4> Fully Customized</h4>
-            <p>Tailor your button layouts, color schemes, and custom specs.</p>
+            <div class="about-section-block">
+                <h3><i class="fa-solid fa-microchip card-icon"></i> Crafted for Precision</h3>
+                <p>
+                    Whether you are ordering from our curated shop or configuring a custom build from scratch using our customizer, every piece is built with performance, tournament-grade ergonomics, and striking aesthetics in mind.
+                </p>
+            </div>
         </div>
-        <div class="about-grid-item">
-            <h4>Real-Time Inventory</h4>
-            <p>Backed by a dynamic live management system for total tracking.</p>
+
+        <div class="about-grid">
+            <div class="about-grid-card">
+                <div class="grid-card-icon">
+                    <i class="fa-solid fa-sliders"></i>
+                </div>
+                <h4>Fully Customized</h4>
+                <p>Tailor your button layouts, color schemes, and custom artwork to create your signature controller.</p>
+            </div>
+
+            <div class="about-grid-card">
+                <div class="grid-card-icon">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <h4>Zero-Latency Input</h4>
+                <p>Responsive switches and premium microcontrollers engineered for competitive fighting games.</p>
+            </div>
+
+            <div class="about-grid-card">
+                <div class="grid-card-icon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h4>Built to Endure</h4>
+                <p>Heavy-duty enclosures, premium Sanwa-style components, and reinforced cabling built for the long haul.</p>
+            </div>
         </div>
-        <div class="about-grid-item">
-            <h4> Secure Access</h4>
-            <p>Role-based authentication keeping admin tools protected.</p>
-        </div>
-    </div>
-</main>
+    </main>
+</div>
 
 <?php include '../global/footer.php'; ?>

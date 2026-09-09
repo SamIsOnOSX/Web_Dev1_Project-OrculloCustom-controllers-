@@ -30,17 +30,22 @@ include '../global/header.php';
 <!-- Dedicated Dashboard Stylesheet -->
 <link rel="stylesheet" href="<?php echo $base_path; ?>css/dashboard.css">
 
-<main class="dashboard-container">
-    <h2 class="dashboard-title">Admin Control Panel</h2>
+<div class="dashboard-page-wrapper">
+    <main class="dashboard-container">
+        <div class="dashboard-header">
+            <span class="user-role-badge admin-badge"><i class="fa-solid fa-shield-halved"></i> Administrator Panel</span>
+            <h1>Admin <span class="username-highlight">Control Center</span></h1>
+            <p>Manage product catalog, stock inventory, user accounts, and platform orders.</p>
+        </div>
 
-    <!-- Feedback Alerts -->
-    <?php if (!empty($message)): ?>
-        <div class="alert-success"><i class="fa-solid fa-circle-check"></i> <?php echo htmlspecialchars($message); ?></div>
-    <?php endif; ?>
+        <!-- Feedback Alerts -->
+        <?php if (!empty($message)): ?>
+            <div class="alert-success"><i class="fa-solid fa-circle-check"></i> <span><?php echo htmlspecialchars($message); ?></span></div>
+        <?php endif; ?>
 
-    <?php if (!empty($error)): ?>
-        <div class="alert-error"><i class="fa-solid fa-circle-exclamation"></i> <?php echo htmlspecialchars($error); ?></div>
-    <?php endif; ?>
+        <?php if (!empty($error)): ?>
+            <div class="alert-error"><i class="fa-solid fa-circle-exclamation"></i> <span><?php echo htmlspecialchars($error); ?></span></div>
+        <?php endif; ?>
 
     <!-- 1. Create New Product Card -->
     <?php include __DIR__ . '/components/create_product_card.php'; ?>
@@ -54,5 +59,6 @@ include '../global/header.php';
     <!-- 4. Platform Orders -->
     <?php include __DIR__ . '/components/orders_card.php'; ?>
 </main>
+</div>
 
 <?php include '../global/footer.php'; ?>
