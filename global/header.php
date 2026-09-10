@@ -40,7 +40,7 @@ $base_path = $base_path ?? '';
             <a href="<?php echo $base_path; ?>about/about.php">About</a>
             
             <?php if (isset($_SESSION['user_id'])): ?>
-                <a href="<?php echo $base_path; ?>dashboard/index.php">Dashboard</a>
+                <a href="<?php echo $base_path; ?>dashboard/index.php">Profile</a>
             <?php endif; ?>
         </nav>
 

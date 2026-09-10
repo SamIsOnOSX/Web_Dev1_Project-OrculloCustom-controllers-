@@ -48,9 +48,14 @@ function deleteProduct($pdo, $product_id) {
     return $stmt->execute(['id' => $product_id]);
 }
 
-function createOrder($pdo, $user_id, $total_amount) {
-    $stmt = $pdo->prepare("INSERT INTO orders (user_id, total_amount) VALUES (:user_id, :total_amount)");
-    $stmt->execute(['user_id' => $user_id, 'total_amount' => $total_amount]);
+function createOrder($pdo, $user_id, $total_amount, $payment_method = 'cod', $payment_proof = null) {
+    $stmt = $pdo->prepare("INSERT INTO orders (user_id, total_amount, payment_method, payment_proof) VALUES (:user_id, :total_amount, :payment_method, :payment_proof)");
+    $stmt->execute([
+        'user_id'        => $user_id,
+        'total_amount'   => $total_amount,
+        'payment_method' => $payment_method,
+        'payment_proof'  => $payment_proof,
+    ]);
     return $pdo->lastInsertId();
 }
 
@@ -67,12 +72,24 @@ function createOrderItem($pdo, $order_id, $type, $button_color, $price, $artwork
 }
 
 // Fetch orders: passing a user_id filters it; passing null gets everything
+// JOINs users table so username is available on each order row
 function getOrderHistory($pdo, $user_id = null) {
     if ($user_id) {
-        $stmt = $pdo->prepare("SELECT * FROM orders WHERE user_id = :user_id ORDER BY created_at DESC");
+        $stmt = $pdo->prepare("
+            SELECT o.*, u.username
+            FROM orders o
+            LEFT JOIN users u ON u.id = o.user_id
+            WHERE o.user_id = :user_id
+            ORDER BY o.created_at DESC
+        ");
         $stmt->execute(['user_id' => $user_id]);
     } else {
-        $stmt = $pdo->query("SELECT * FROM orders ORDER BY created_at DESC");
+        $stmt = $pdo->query("
+            SELECT o.*, u.username
+            FROM orders o
+            LEFT JOIN users u ON u.id = o.user_id
+            ORDER BY o.created_at DESC
+        ");
     }
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
