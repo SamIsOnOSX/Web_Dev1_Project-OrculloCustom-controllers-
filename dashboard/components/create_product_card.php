@@ -31,7 +31,8 @@
                 <label for="existing_asset"><i class="fa-solid fa-images label-icon"></i> Or Choose Existing Asset</label>
                 <select id="existing_asset" name="existing_asset">
                     <option value="">-- Choose from Assets library (optional) --</option>
-                    <?php foreach ($available_assets as $asset): ?>
+                    <?php $assets = $assets ?? []; ?>
+                    <?php foreach ($assets as $asset): ?>
                         <option value="<?php echo htmlspecialchars($asset); ?>"><?php echo htmlspecialchars(basename($asset)); ?></option>
                     <?php endforeach; ?>
                 </select>

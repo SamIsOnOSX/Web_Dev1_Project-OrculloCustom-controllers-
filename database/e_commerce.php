@@ -7,10 +7,25 @@ function getAllProducts($pdo) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function getProductById($pdo, $product_id) {
+    $sql = "SELECT id, name, description, price, stock, image_path FROM products WHERE id = :id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['id' => $product_id]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
 function updateProductStock($pdo, $product_id, $new_stock) {
     $sql = "UPDATE products SET stock = :stock WHERE id = :id";
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue(':stock', $new_stock, PDO::PARAM_INT);
+    $stmt->bindValue(':id', $product_id, PDO::PARAM_INT);
+    return $stmt->execute();
+}
+
+function reduceProductStock($pdo, $product_id, $quantity) {
+    $sql = "UPDATE products SET stock = GREATEST(0, stock - :quantity) WHERE id = :id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindValue(':quantity', $quantity, PDO::PARAM_INT);
     $stmt->bindValue(':id', $product_id, PDO::PARAM_INT);
     return $stmt->execute();
 }

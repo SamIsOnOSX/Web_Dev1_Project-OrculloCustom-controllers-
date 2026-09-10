@@ -1,4 +1,9 @@
-/* Page wrapper consistent with shop, customize, and about background */
+/* =========================================================
+   checkout.css — Styled to match the site-wide design system
+   (consistent with dashboard, shop, and customize pages)
+   ========================================================= */
+
+/* Page Wrapper */
 .checkout-page-wrapper {
     background: radial-gradient(circle at 50% 20%, #130622 0%, #08030f 55%, #050209 100%);
     border-top: 1px solid #1f0d33;
@@ -16,7 +21,7 @@
     margin: 0 auto;
 }
 
-/* Header */
+/* Page Header */
 .checkout-header {
     text-align: center;
     margin-bottom: 35px;
@@ -31,31 +36,33 @@
     margin: 0;
 }
 
-/* Unified Glassmorphic Card Lighting */
+/* ── Glassmorphic Card (matches dashboard-card) ── */
 .checkout-card {
     background: rgba(30, 15, 48, 0.72);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     border: 1px solid rgba(255, 65, 161, 0.22);
     border-radius: 18px;
-    padding: 40px;
-    box-shadow: 
+    padding: 36px 40px;
+    box-shadow:
         0 20px 50px rgba(0, 0, 0, 0.55),
         0 0 35px rgba(255, 65, 161, 0.12),
         inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
-/* Card Header */
+/* ── Card Header Bar (matches dashboard card-header-bar) ── */
 .checkout-card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 24px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .checkout-card-header h3 {
     font-family: var(--font-heading, 'Space Grotesk', sans-serif);
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: #ffffff;
     display: flex;
@@ -66,34 +73,36 @@
 
 .card-icon {
     color: #ff9b44;
-    font-size: 1.15rem;
+    font-size: 1.1rem;
 }
 
+/* Item count pill */
 .item-count-badge {
     padding: 4px 12px;
-    background: rgba(255, 65, 161, 0.15);
+    background: rgba(255, 65, 161, 0.12);
     border: 1px solid rgba(255, 65, 161, 0.35);
     color: #ff9b44;
     border-radius: 20px;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     font-weight: 700;
+    letter-spacing: 0.04em;
 }
 
-/* Items Preview List */
+/* ── Items List ── */
 .checkout-items-preview {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
 }
 
 .checkout-item-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(10, 4, 18, 0.6);
+    background: rgba(10, 4, 18, 0.55);
     border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 10px;
-    padding: 14px 18px;
+    padding: 13px 18px;
 }
 
 .item-info {
@@ -105,7 +114,7 @@
 .item-name {
     color: #ffffff;
     font-weight: 600;
-    font-size: 0.98rem;
+    font-size: 0.97rem;
 }
 
 .item-meta {
@@ -120,14 +129,14 @@
     font-size: 1.05rem;
 }
 
-/* Divider */
+/* ── Gradient Divider (matches dashboard accent) ── */
 .checkout-divider {
     height: 1px;
-    background: linear-gradient(90deg, rgba(255, 65, 161, 0.4), rgba(255, 155, 68, 0.25), transparent);
+    background: linear-gradient(90deg, rgba(255, 65, 161, 0.45), rgba(255, 155, 68, 0.3), transparent);
     margin: 26px 0 20px;
 }
 
-/* Total Section */
+/* ── Total Row ── */
 .checkout-total-row {
     display: flex;
     justify-content: space-between;
@@ -136,14 +145,14 @@
 }
 
 .total-label {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 600;
     color: #d6cee3;
 }
 
 .total-amount {
     font-family: var(--font-heading, 'Space Grotesk', sans-serif);
-    font-size: 1.8rem;
+    font-size: 1.85rem;
     font-weight: 700;
     color: #ff9b44;
     display: flex;
@@ -156,14 +165,14 @@
     color: #ff41a1;
 }
 
-/* Action Button */
+/* ── Confirm Button (matches site-wide btn-primary gradient) ── */
 .checkout-form {
     margin: 0;
 }
 
 .btn-confirm-order {
     width: 100%;
-    padding: 15px 24px;
+    padding: 14px 24px;
     background: var(--gradient-primary, linear-gradient(90deg, #ff41a1, #ff9b44));
     color: #ffffff;
     border: none;
@@ -186,7 +195,7 @@
     box-shadow: 0 8px 24px rgba(255, 65, 161, 0.45);
 }
 
-/* Error Box */
+/* ── Error Box (matches dashboard alert-error) ── */
 .checkout-error-box {
     display: flex;
     align-items: center;
@@ -194,63 +203,71 @@
     background: rgba(127, 29, 29, 0.5);
     border: 1px solid #ef4444;
     color: #fecaca;
-    padding: 14px 18px;
+    padding: 13px 18px;
     border-radius: 12px;
     margin-bottom: 24px;
-    font-size: 0.95rem;
+    font-size: 0.92rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
 }
 
 .checkout-error-box i {
     color: #f87171;
-    font-size: 1.15rem;
+    font-size: 1.1rem;
+    flex-shrink: 0;
 }
 
-/* Success Card */
+/* ── Success Card ── */
 .checkout-success-card {
     text-align: center;
     padding: 50px 30px;
 }
 
 .success-icon-badge {
-    width: 64px;
-    height: 64px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
-    background: rgba(16, 185, 129, 0.2);
-    border: 2px solid #10b981;
+    background: rgba(16, 185, 129, 0.15);
+    border: 2px solid rgba(16, 185, 129, 0.6);
     color: #34d399;
-    font-size: 1.8rem;
+    font-size: 2rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
-    box-shadow: 0 0 24px rgba(16, 185, 129, 0.35);
+    margin-bottom: 22px;
+    box-shadow:
+        0 0 30px rgba(16, 185, 129, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .checkout-success-card h2 {
     font-family: var(--font-heading, 'Space Grotesk', sans-serif);
     font-size: 2rem;
+    font-weight: 700;
     color: #ffffff;
+    letter-spacing: -0.01em;
     margin-bottom: 12px;
 }
 
 .checkout-success-card p {
     color: #d6cee3;
-    font-size: 1.05rem;
+    font-size: 1rem;
     max-width: 480px;
-    margin: 0 auto 30px;
-    line-height: 1.6;
+    margin: 0 auto 32px;
+    line-height: 1.65;
 }
 
 .success-actions {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
 }
 
-/* Responsive */
+/* ── Responsive ── */
 @media (max-width: 600px) {
     .checkout-card {
-        padding: 28px 20px;
+        padding: 26px 20px;
     }
 
     .checkout-header h1 {
@@ -259,5 +276,9 @@
 
     .success-actions {
         flex-direction: column;
+    }
+
+    .total-amount {
+        font-size: 1.6rem;
     }
 }

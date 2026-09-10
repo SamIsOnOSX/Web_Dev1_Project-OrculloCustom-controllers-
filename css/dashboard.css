@@ -347,7 +347,8 @@
     color: #d6cee3;
 }
 
-.status-badge.status-delivered {
+.status-badge.status-delivered,
+.status-badge.status-paid {
     background: rgba(16, 185, 129, 0.18);
     border-color: rgba(16, 185, 129, 0.45);
     color: #34d399;
@@ -369,6 +370,12 @@
     background: rgba(168, 85, 247, 0.18);
     border-color: rgba(168, 85, 247, 0.45);
     color: #c084fc;
+}
+
+.status-badge.status-cancelled {
+    background: rgba(239, 68, 68, 0.18);
+    border-color: rgba(239, 68, 68, 0.45);
+    color: #f87171;
 }
 
 /* Empty State */
@@ -561,6 +568,188 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
+}
+
+/* Admin section note */
+.admin-section-note {
+    font-size: 0.88rem;
+    color: #a0a0a0;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.admin-section-note i {
+    color: #60a5fa;
+    font-size: 0.92rem;
+}
+
+/* User Password Grid */
+.user-pwd-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.user-pwd-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    background: rgba(10, 4, 18, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    padding: 14px 18px;
+    flex-wrap: wrap;
+}
+
+.user-pwd-row--locked {
+    opacity: 0.55;
+    background: rgba(168, 85, 247, 0.06);
+    border-color: rgba(168, 85, 247, 0.18);
+}
+
+.user-pwd-identity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 180px;
+}
+
+.user-pwd-name {
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 0.95rem;
+}
+
+.user-pwd-role-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.admin-pwd-badge {
+    background: rgba(168, 85, 247, 0.15);
+    border: 1px solid rgba(168, 85, 247, 0.35);
+    color: #c084fc;
+}
+
+.customer-pwd-badge {
+    background: rgba(255, 65, 161, 0.12);
+    border: 1px solid rgba(255, 65, 161, 0.3);
+    color: #ff9b44;
+}
+
+.user-pwd-locked-msg {
+    color: #554a63;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-style: italic;
+}
+
+.user-pwd-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 260px;
+}
+
+.input-new-pwd {
+    flex: 1;
+    padding: 9px 14px;
+    background: #07030c;
+    color: #ffffff;
+    border: 1px solid #2e1548;
+    border-radius: 8px;
+    outline: none;
+    font-size: 0.9rem;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.input-new-pwd:focus {
+    border-color: #ff41a1;
+    box-shadow: 0 0 0 3px rgba(255, 65, 161, 0.2);
+}
+
+/* ── Password Show/Hide Wrapper ── */
+.pwd-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+/* Make inputs inside the wrapper leave room for the eye button */
+.pwd-input-wrap input {
+    width: 100%;
+    flex: 1;
+    padding-right: 44px; /* space for the toggle button */
+}
+
+.pwd-toggle-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-left: 1px solid rgba(255, 255, 255, 0.07);
+    color: #a0a0a0;
+    cursor: pointer;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.9rem;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.pwd-toggle-btn:hover {
+    color: #ff9b44;
+    background: rgba(255, 155, 68, 0.08);
+}
+
+/* For .input-new-pwd inside a wrap — keep it flex-growing */
+.pwd-input-wrap .input-new-pwd {
+    padding-right: 44px;
+}
+
+.btn-change-pwd {
+    padding: 9px 18px;
+    background: var(--gradient-primary, linear-gradient(90deg, #ff41a1, #ff9b44));
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    transition: opacity 0.2s, transform 0.15s;
+}
+
+.btn-change-pwd:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+/* Card header bar (consistent sub-header for dashboard cards) */
+.card-header-bar {
+    margin-bottom: 22px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* Responsive */

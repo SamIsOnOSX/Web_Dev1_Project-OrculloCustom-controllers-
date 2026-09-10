@@ -43,21 +43,31 @@ include '../global/header.php';
                 </div>
             <?php endif; ?>
 
+            <?php 
+                $total_item_count = 0;
+                foreach ($cart_items as $ci) {
+                    $total_item_count += isset($ci['quantity']) ? (int)$ci['quantity'] : 1;
+                }
+            ?>
             <div class="checkout-card checkout-summary-card">
                 <div class="checkout-card-header">
                     <h3><i class="fa-solid fa-receipt card-icon"></i> Order Overview</h3>
-                    <span class="item-count-badge"><?php echo count($cart_items); ?> Item<?php echo count($cart_items) > 1 ? 's' : ''; ?></span>
+                    <span class="item-count-badge"><?php echo $total_item_count; ?> Item<?php echo $total_item_count > 1 ? 's' : ''; ?></span>
                 </div>
 
                 <div class="checkout-items-preview">
                     <?php foreach ($cart_items as $item): ?>
+                        <?php 
+                            $qty = isset($item['quantity']) ? (int)$item['quantity'] : 1; 
+                            $item_subtotal = $item['price'] * $qty;
+                        ?>
                         <div class="checkout-item-row">
                             <div class="item-info">
                                 <span class="item-name"><?php echo htmlspecialchars($item['type']); ?></span>
-                                <span class="item-meta">Color: <?php echo htmlspecialchars($item['button_color'] ?? 'Standard'); ?></span>
+                                <span class="item-meta">Color: <?php echo htmlspecialchars($item['button_color'] ?? 'Standard'); ?> <?php if ($qty > 1): ?>&bull; Qty: <?php echo $qty; ?><?php endif; ?></span>
                             </div>
                             <div class="item-price">
-                                $<?php echo number_format($item['price'], 2); ?>
+                                $<?php echo number_format($item_subtotal, 2); ?>
                             </div>
                         </div>
                     <?php endforeach; ?>

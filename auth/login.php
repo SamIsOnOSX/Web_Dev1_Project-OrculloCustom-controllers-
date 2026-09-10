@@ -2,6 +2,13 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+// If already logged in, redirect to home page
+if (isset($_SESSION['user_id'])) {
+    header("Location: ../index.php");
+    exit();
+}
+
 require '../database/db.php'; 
 require '../database/users.php';
 require 'validation.php';

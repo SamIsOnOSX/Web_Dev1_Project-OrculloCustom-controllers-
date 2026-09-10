@@ -26,10 +26,11 @@
                             <td>$<?php echo number_format($order['total_amount'], 2); ?></td>
                             <td>
                                 <select name="status" class="table-select">
-                                    <option value="Pending" <?php echo $order['status'] === 'Pending' ? 'selected' : ''; ?>>Pending</option>
-                                    <option value="Processing" <?php echo $order['status'] === 'Processing' ? 'selected' : ''; ?>>Processing</option>
-                                    <option value="Shipped" <?php echo $order['status'] === 'Shipped' ? 'selected' : ''; ?>>Shipped</option>
-                                    <option value="Delivered" <?php echo $order['status'] === 'Delivered' ? 'selected' : ''; ?>>Delivered</option>
+                                    <option value="pending" <?php echo strtolower($order['status']) === 'pending' ? 'selected' : ''; ?>>Pending</option>
+                                    <option value="paid" <?php echo strtolower($order['status']) === 'paid' ? 'selected' : ''; ?>>Paid</option>
+                                    <option value="shipped" <?php echo strtolower($order['status']) === 'shipped' ? 'selected' : ''; ?>>Shipped</option>
+                                    <option value="delivered" <?php echo strtolower($order['status']) === 'delivered' ? 'selected' : ''; ?>>Delivered</option>
+                                    <option value="cancelled" <?php echo strtolower($order['status']) === 'cancelled' ? 'selected' : ''; ?>>Cancelled</option>
                                 </select>
                             </td>
                             <td><button type="submit" name="update_order" class="btn-update-order">Update</button></td>

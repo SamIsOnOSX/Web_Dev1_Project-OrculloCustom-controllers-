@@ -5,6 +5,7 @@
  */
 
 require_once dirname(__DIR__) . '/database/e_commerce.php';
+require_once dirname(__DIR__) . '/database/users.php';
 
 /**
  * Dispatches and handles all admin POST operations.
@@ -38,6 +39,10 @@ function handleAdminPostActions(PDO $pdo): array {
     // 5. Update Order Status
     elseif (isset($_POST['update_order'])) {
         $result = processUpdateOrder($pdo);
+    }
+    // 6. Admin changes a customer's password
+    elseif (isset($_POST['admin_change_password'])) {
+        $result = processChangeUserPassword($pdo);
     }
 
     return $result;
@@ -155,12 +160,31 @@ function processUpdateUser(PDO $pdo): array {
     $target_id = (int)($_POST['user_id'] ?? 0);
     $username  = trim($_POST['username'] ?? '');
     $email     = trim($_POST['email'] ?? '');
-    $role_val  = $_POST['role'] ?? 'user';
+    $role_val  = strtolower(trim($_POST['role'] ?? 'customer'));
 
-    $stmt = $pdo->prepare("UPDATE users SET username = :username, email = :email, role = :role WHERE id = :id");
-    if ($stmt->execute(['username' => $username, 'email' => $email, 'role' => $role_val, 'id' => $target_id])) {
-        return ['message' => "User #$target_id successfully updated.", 'error' => ''];
+    // Map legacy 'user' to database enum 'customer'
+    if ($role_val === 'user') {
+        $role_val = 'customer';
     }
+
+    $allowed_roles = ['customer', 'admin'];
+    if (!in_array($role_val, $allowed_roles, true)) {
+        return ['message' => '', 'error' => 'Invalid role selected.'];
+    }
+
+    if ($target_id <= 0 || empty($username) || empty($email)) {
+        return ['message' => '', 'error' => 'Username and email cannot be empty.'];
+    }
+
+    try {
+        $stmt = $pdo->prepare("UPDATE users SET username = :username, email = :email, role = :role WHERE id = :id");
+        if ($stmt->execute(['username' => $username, 'email' => $email, 'role' => $role_val, 'id' => $target_id])) {
+            return ['message' => "User #$target_id successfully updated to " . ucfirst($role_val) . ".", 'error' => ''];
+        }
+    } catch (PDOException $e) {
+        return ['message' => '', 'error' => 'Database error: ' . $e->getMessage()];
+    }
+
     return ['message' => '', 'error' => "Failed to update user #$target_id."];
 }
 
@@ -169,13 +193,69 @@ function processUpdateUser(PDO $pdo): array {
  */
 function processUpdateOrder(PDO $pdo): array {
     $order_id = (int)($_POST['order_id'] ?? 0);
-    $status   = $_POST['status'] ?? 'Pending';
+    $status   = strtolower(trim($_POST['status'] ?? 'pending'));
 
-    $stmt = $pdo->prepare("UPDATE orders SET status = :status WHERE id = :id");
-    if ($stmt->execute(['status' => $status, 'id' => $order_id])) {
-        return ['message' => "Order #$order_id status changed to '$status'.", 'error' => ''];
+    $allowed_statuses = ['pending', 'paid', 'shipped', 'delivered', 'cancelled'];
+    if (!in_array($status, $allowed_statuses, true)) {
+        return ['message' => '', 'error' => 'Invalid order status selected.'];
     }
+
+    if ($order_id <= 0) {
+        return ['message' => '', 'error' => 'Invalid order ID.'];
+    }
+
+    try {
+        $stmt = $pdo->prepare("UPDATE orders SET status = :status WHERE id = :id");
+        if ($stmt->execute(['status' => $status, 'id' => $order_id])) {
+            return ['message' => "Order #$order_id status changed to '" . ucfirst($status) . "'.", 'error' => ''];
+        }
+    } catch (PDOException $e) {
+        return ['message' => '', 'error' => 'Database error: ' . $e->getMessage()];
+    }
+
     return ['message' => '', 'error' => "Failed to update order #$order_id."];
+}
+
+/**
+ * Allows an admin to change a customer's password.
+ * Admins cannot change another admin's password.
+ */
+function processChangeUserPassword(PDO $pdo): array {
+    $target_id   = (int)($_POST['user_id'] ?? 0);
+    $new_password = trim($_POST['new_password'] ?? '');
+
+    if ($target_id <= 0) {
+        return ['message' => '', 'error' => 'Invalid user ID.'];
+    }
+    if (strlen($new_password) < 6) {
+        return ['message' => '', 'error' => 'Password must be at least 6 characters.'];
+    }
+
+    // Fetch target user to check their role
+    try {
+        $stmt = $pdo->prepare("SELECT id, role FROM users WHERE id = :id");
+        $stmt->execute(['id' => $target_id]);
+        $target_user = $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        return ['message' => '', 'error' => 'Database error: ' . $e->getMessage()];
+    }
+
+    if (!$target_user) {
+        return ['message' => '', 'error' => "User #$target_id not found."];
+    }
+
+    // Block admins from changing other admins' passwords
+    if ($target_user['role'] === 'admin') {
+        return ['message' => '', 'error' => 'You cannot change another admin\'s password.'];
+    }
+
+    $hashed = password_hash($new_password, PASSWORD_DEFAULT);
+
+    if (updateUserPassword($pdo, $target_id, $hashed)) {
+        return ['message' => "Password for User #$target_id has been updated.", 'error' => ''];
+    }
+
+    return ['message' => '', 'error' => "Failed to update password for User #$target_id."];
 }
 
 /**

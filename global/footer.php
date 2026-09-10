@@ -1,6 +1,5 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">  
+<?php $base_path = $base_path ?? ''; ?>
+
 <footer class="main-footer">
         <div class="footer-container">
             <div class="footer-column brand-column">

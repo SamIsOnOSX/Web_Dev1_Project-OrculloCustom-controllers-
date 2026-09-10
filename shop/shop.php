@@ -70,9 +70,22 @@ include '../global/header.php';
                                 <input type="hidden" name="price" value="<?php echo $product['price']; ?>">
                                 <input type="hidden" name="button_color" value="Standard">
                                 
-                                <button type="submit" name="add_to_cart" class="add-to-cart-btn" <?php echo $is_out_of_stock ? 'disabled' : ''; ?>>
-                                    <i class="fa-solid fa-cart-plus"></i> <?php echo $is_out_of_stock ? 'Sold Out' : 'Add to Cart'; ?>
-                                </button>
+                                <div class="product-action-row">
+                                    <div class="quantity-control">
+                                        <label for="qty-<?php echo $product['id']; ?>" class="sr-only">Quantity</label>
+                                        <input type="number" 
+                                               id="qty-<?php echo $product['id']; ?>" 
+                                               name="quantity" 
+                                               value="1" 
+                                               min="1" 
+                                               max="<?php echo max(1, $stock); ?>" 
+                                               class="input-product-qty" 
+                                               <?php echo $is_out_of_stock ? 'disabled' : ''; ?>>
+                                    </div>
+                                    <button type="submit" name="add_to_cart" class="add-to-cart-btn" <?php echo $is_out_of_stock ? 'disabled' : ''; ?>>
+                                        <i class="fa-solid fa-cart-plus"></i> <?php echo $is_out_of_stock ? 'Sold Out' : 'Add to Cart'; ?>
+                                    </button>
+                                </div>
                             </form>
                         </div>
                     </div>

@@ -29,4 +29,12 @@ function updateUserRole($pdo, $user_id, $role) {
     $stmt->bindValue(':id', $user_id, PDO::PARAM_INT);
     return $stmt->execute();
 }
+
+function updateUserPassword($pdo, $user_id, $hashed_password) {
+    $sql = "UPDATE users SET password = :password WHERE id = :id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindValue(':password', $hashed_password);
+    $stmt->bindValue(':id', $user_id, PDO::PARAM_INT);
+    return $stmt->execute();
+}
 ?>
