@@ -19,9 +19,9 @@
             
             <div class="footer-column links-column support-column">
                 <h4>SUPPORT</h4>
-                <span class="unclickable-item">Support Center</span>
-                <span class="unclickable-item">Contact Us</span>
-                <span class="unclickable-item">FAQs</span>
+                <a href="<?php echo $base_path; ?>support/support.php">Support Center</a>
+                <a href="<?php echo $base_path; ?>support/support.php#contact">Contact Us</a>
+                <a href="<?php echo $base_path; ?>support/support.php#faq">FAQs</a>
             </div>
 
             <div class="footer-column newsletter-column">
