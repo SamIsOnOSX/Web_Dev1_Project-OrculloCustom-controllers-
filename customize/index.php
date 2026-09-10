@@ -22,6 +22,20 @@ include '../global/header.php';
             </div>
         <?php endif; ?>
 
+        <?php
+        $upload_error = '';
+        if (!empty($_SESSION['cart_error'])) {
+            $upload_error = $_SESSION['cart_error'];
+            unset($_SESSION['cart_error']);
+        }
+        ?>
+        <?php if (!empty($upload_error)): ?>
+            <div class="error-box">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span><?php echo htmlspecialchars($upload_error); ?></span>
+            </div>
+        <?php endif; ?>
+
         <div class="customizer-card">
             <form action="../cart/cart.php" method="POST" enctype="multipart/form-data" class="customizer-form">
                 <input type="hidden" name="add_to_cart_custom" value="1">

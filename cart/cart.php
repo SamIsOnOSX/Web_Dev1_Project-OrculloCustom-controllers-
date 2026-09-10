@@ -10,6 +10,47 @@ require_once '../database/e_commerce.php';
 
 $cart_error = '';
 
+/**
+ * Validates and saves a custom artwork upload to the root uploads/ directory.
+ * Mirrors the dashboard's saveUploadedProductImage() for consistency.
+ *
+ * @param array $file  Entry from $_FILES
+ * @return array ['path' => string, 'error' => string]
+ */
+function saveUploadedArtwork(array $file): array {
+    $allowed_exts  = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+    $allowed_mimes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+
+    $file_info = pathinfo($file['name']);
+    $file_ext  = strtolower($file_info['extension'] ?? '');
+
+    if (!in_array($file_ext, $allowed_exts, true)) {
+        return ['path' => '', 'error' => 'Invalid file type. Allowed formats: JPG, PNG, WEBP, GIF.'];
+    }
+
+    $finfo     = finfo_open(FILEINFO_MIME_TYPE);
+    $mime_type = finfo_file($finfo, $file['tmp_name']);
+    finfo_close($finfo);
+
+    if (!in_array($mime_type, $allowed_mimes, true)) {
+        return ['path' => '', 'error' => 'Uploaded file is not a valid image.'];
+    }
+
+    $upload_dir = dirname(__DIR__) . '/uploads/';
+    if (!is_dir($upload_dir)) {
+        mkdir($upload_dir, 0755, true);
+    }
+
+    $safe_filename = time() . '_' . preg_replace('/[^a-zA-Z0-9_-]/', '_', $file_info['filename']) . '.' . $file_ext;
+    $target_dest   = $upload_dir . $safe_filename;
+
+    if (move_uploaded_file($file['tmp_name'], $target_dest)) {
+        return ['path' => 'uploads/' . $safe_filename, 'error' => ''];
+    }
+
+    return ['path' => '', 'error' => 'Failed to save uploaded artwork.'];
+}
+
 // Handle adding custom items from the customizer
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart_custom'])) {
     $type = $_POST['type'] ?? 'arcade_stick';
@@ -25,15 +66,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart_custom'])
     // Handle optional file upload for custom artwork
     $artwork_path = '';
     if (isset($_FILES['custom_artwork']) && $_FILES['custom_artwork']['error'] === UPLOAD_ERR_OK) {
-        $upload_dir = '../uploads/';
-        if (!is_dir($upload_dir)) {
-            mkdir($upload_dir, 0755, true);
+        $upload_result = saveUploadedArtwork($_FILES['custom_artwork']);
+        if (!empty($upload_result['error'])) {
+            $_SESSION['cart_error'] = $upload_result['error'];
+            header('Location: ../customize/index.php');
+            exit();
         }
-        $file_name = time() . '_' . basename($_FILES['custom_artwork']['name']);
-        $target_file = $upload_dir . $file_name;
-        if (move_uploaded_file($_FILES['custom_artwork']['tmp_name'], $target_file)) {
-            $artwork_path = 'uploads/' . $file_name; // Relative path for viewing
-        }
+        $artwork_path = $upload_result['path'];
     }
 
     $item = [

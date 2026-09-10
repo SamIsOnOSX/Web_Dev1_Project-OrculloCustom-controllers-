@@ -202,6 +202,25 @@
     color: #ff9b44;
 }
 
+.error-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(127, 29, 29, 0.5);
+    border: 1px solid #ef4444;
+    color: #fca5a5;
+    padding: 14px 18px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.error-box i {
+    font-size: 1.15rem;
+    color: #f87171;
+}
+
 /* Primary Action Button */
 .btn-submit-custom {
     width: 100%;
